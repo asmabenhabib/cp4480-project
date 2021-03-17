@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Admin Home Page</title>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet"  href ="style.css">
+     
+
+
+    </head>
+<body>
+  
+<div class="container">
+
+<div  id="textPage">
+
+    <h3> Welcome <strong> Admin</strong></h3>
+
+</div>
+
+
+
+
+<div id="chatbox">
+    
+	<div id="friendslist">
+    	<div id="topmenu">
+           
+        	<span class="friends"  id='friendsIcon'  style='float:left; text-align:center' >My Chat</span>
+          
+             <span class="chats"   id='allusersIcon'  style='float:left ; text-align:center'>All Users</span> 
+             <span class="history"   id='userIcon'  style='float:left   ; text-align:center' hidden></span> 
+        </div>
+        
+
+
+        <div id="friends" class= "tab">
+        	<div class="friend">
+            	<img src="icon.jpg" />
+               
+                
+                <p>
+                	<strong> username </strong>
+                    <!-- <span>marjoseph@gmail.com</span> -->
+                </p>
+               
+            </div>
+            
+            <div class="friend">
+                <img src="icon.jpg" />
+                <p>
+                	<strong>Martin Joseph</strong>
+	                <span>marjoseph@gmail.com</span>
+                </p>
+               
+            </div>
+            
+          
+        
+        </div>  
+
+
+          <!-- all users  -->
+        <div id="allusers" class= "tab" hidden>
+
+            <!--  -->
+        	<div class="allusers" id="username123">
+                <img src="icon.jpg" />
+               
+                
+                <p>
+                	<strong> username123 </strong>
+                    <!-- <span>marjoseph@gmail.com</span> -->
+                </p>
+               
+            </div>
+
+        </div>
+
+
+      
+        <div id="user" class= "tab" hidden >
+       
+            <div class="user username123"  >
+                <img src="icon.jpg" />
+               
+                
+                <p>
+                    <strong> mark </strong>
+                    <!-- <span>marjoseph@gmail.com</span> -->
+                </p>
+               
+            </div>
+            
+            <div class="user username123">
+                <img src="icon.jpg" />
+                <p>
+                    <strong>john</strong>
+                    <span>marjoseph@gmail.com</span>
+                </p>
+               
+            </div>
+          
+            
+        
+        </div> 
+                      
+        
+    </div>	
+
+  
+    
+    <div id="chatview" class="p1">    	
+        <div id="profile">
+
+            <div id="close">
+                <div class="cy"></div>
+                <div class="cx"></div>
+            </div>
+            
+            <p>username</p>
+            <!-- <span>miro@badev@gmail.com</span> -->
+        </div>
+        <div id="chat-messages">
+        	
+            
+            <div class="message">
+            	<img src="icon.jpg" />
+                <div class="bubble">
+                	Really cool stuff!
+                    <div class="corner"></div>
+                  
+                </div>
+            </div>
+            
+            <div class="message right">
+                <img src="icon.jpg" />
+                <div class="bubble">
+                	Can you share a link for the tutorial?
+                    <div class="corner"></div>
+                   
+                </div>
+            </div>
+            
+            
+            <div class="message">
+            
+            </div>
+            
+        </div>
+    	
+        <div id="sendmessage">
+        	<input type="text" value="Send message..." />
+            <button id="send"></button>
+        </div>
+    
+    </div>        
+</div>
+
+
+<div><button id='logout-button'>Logout</button></div>
+</div>	
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="animation.js"></script>
+</body>
+</html>
