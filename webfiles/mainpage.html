@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home Page</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="index.js"></script>
+
+
+</head>
+
+<body onload="loadFriends()">
+
+    <div class="container">
+
+        <div id="textPage">
+
+            <h3> Welcome <strong> username</strong></h3>
+
+        </div>
+
+
+
+
+        <div id="chatbox">
+            <div id="friendslist">
+                <div id="topmenu" style='text-align:center'>
+                    <span class="friends" id='friends' onclick="loadFriends()"
+                        style=' float:left; display:inline-block'></span>
+
+                    <span class="chats" id='chats' onclick="loadChats()" style=' display:inline-block'></span>
+
+
+                </div>
+                <div id="friendschats"></div>
+            </div>
+
+        </div>
+
+
+
+        <div id="chatview" class="p1">
+
+            <div id="profile">
+
+                <div id="close">
+                    <div class="cy"></div>
+                    <div class="cx"></div>
+                </div>
+
+                <p>username</p>
+            </div>
+            <div id="mess"></div>
+
+            <div id="sendmessage">
+                <input type="text" value="Send message..." />
+                <button id="send"></button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div><button id='logout-button'>Logout</button></div>
+    </div>
+
+    </div>
+    <script src="jquery-3.5.1.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="animation.js"></script>
+</body>
+
+</html>

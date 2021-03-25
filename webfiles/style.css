@@ -140,6 +140,7 @@ body {
 
 #topmenu span.chats{background-position:-95px -46px;margin-bottom:-1px; cursor:pointer;}
 #topmenu span.chats:hover{background-position:-95px -118px; color:blue;	cursor:pointer;}
+#topmenu span.chats:focus{background-position:-95px -118px; color:blue;	cursor:pointer;}
 #topmenu span.history{background-position:-190px 24px; cursor:pointer;}
 #topmenu span.history:hover{background-position:-95px -118px; color: blue; cursor:pointer;}
 .friend{

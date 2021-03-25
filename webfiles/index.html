@@ -1,128 +1,52 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Home Page</title>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet"  href ="style.css">
+<head>
+<title>User Login</title>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet"  href ="style.css">
+
+<script src="index.js"></script>
+
+
+</head>
+<body>
+
+
+ <div class="container">
+
+     <div id="login-box">
+    
+        
+   
+        <form  id="login-form" class="form" method="post" action="">
+          <h3 class="text-center ">Login</h3>
      
 
-
-    </head>
-<body>
-  
-<div class="container">
-
-<div  id="textPage">
-
-    <h3> Welcome <strong> username</strong></h3>
-
-</div>
-
-
-
-
-<div id="chatbox">
+        <div class="form-group">
+          <label  class="text-info">username</label> 
+          <input type = "text" name="username" id="username" class="form-control">
+        </div>
+       
+        <div class="form-group">
+          <label class="text-info">password</label> 
+          <input type = "password" name="password"   id="password" class="form-control">
+        </div>
+       
+        <div class="form-group" >
+         <button type="submit" name="login" class="btn" onclick="doLogin()">login</button>
+        </div>
+       
+        <div style= "font-size:0.9em ; ">
+      
+         
+         </div><br/>
+        </form>
     
-	<div id="friendslist">
-    	<div id="topmenu" style = 'text-align:center'>
-           
-        	<span  class="friends" style='display:inline-block'></span>
-          
-            <!-- <span class="chats"></span> -->
-            <!-- <span class="history"></span> -->
-        </div>
-        
-        <div id="friends">
-        	<div class="friend">
-            	<img src="icon.jpg" />
-               
-                
-                <p>
-                	<strong> username </strong>
-                    <!-- <span>marjoseph@gmail.com</span> -->
-                </p>
-               
-            </div>
-            
-            <div class="friend">
-            	<img src="icon.jpg" />
-                <p>
-                	<strong>Martin Joseph</strong>
-	                <span>marjoseph@gmail.com</span>
-                </p>
-               
-            </div>
-            
-          
-            
-        
-            
-        
-            
-            
-            
-        </div>  
-                      
-        
-    </div>	
-
-   
-    
-    <div id="chatview" class="p1">    	
-        <div id="profile">
-
-            <div id="close">
-                <div class="cy"></div>
-                <div class="cx"></div>
-            </div>
-            
-            <p>username</p>
-            <!-- <span>miro@badev@gmail.com</span> -->
-        </div>
-        <div id="chat-messages">
-        	<!-- <label>Thursday 02</label> -->
-            
-            <div class="message">
-                <img src="icon.jpg" />
-                <div class="bubble">
-                	Really cool stuff!
-                    <div class="corner"></div>
-                  
-                </div>
-            </div>
-            
-            <div class="message right">
-                <img src="icon.jpg" />
-                <div class="bubble">
-                	Can you share a link for the tutorial?
-                    <div class="corner"></div>
-                   
-                </div>
-            </div>
-            
-            
-            
-           
-            
-            <div class="message">
-            
-            </div>
-            
-        </div>
-    	
-        <div id="sendmessage">
-        	<input type="text" value="Send message..." />
-            <button id="send"></button>
-        </div>
-    
-    </div>        
-</div>
+     
+     </div>
+ </div>
 
 
-<div><button id='logout-button'>Logout</button></div>
-</div>	
-
-</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="animation.js"></script>
