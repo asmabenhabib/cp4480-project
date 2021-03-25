@@ -4,11 +4,12 @@
         <title> Admin Home Page</title>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet"  href ="style.css">
-     
+        <script src="index.js"></script>
+
 
 
     </head>
-<body>
+<body onload="loadAdminChats()">
   
 <div class="container">
 
@@ -23,58 +24,25 @@
 
 <div id="chatbox">
     
-	<div id="friendslist">
-    	<div id="topmenu">
-           
-        	<span class="friends"  id='friendsIcon'  style='float:left; text-align:center' >My Chat</span>
-          
-             <span class="chats"   id='allusersIcon'  style='float:left ; text-align:center'>All Users</span> 
-             <span class="history"   id='userIcon'  style='float:left   ; text-align:center' hidden></span> 
+    <div id="friendslist">
+        <div id="topmenu" style = 'text-align:center'>
+            <span class="friends"  id='friendsIcon'  onclick="loadChats()" style='float:left; text-align:center' >My Chat</span>
+            
+            <span class="chats"   id='allusersIcon' onclick="loadAdminChats()"  style='float:left ; text-align:center'>All Users</span> 
+            <span class="history"   id='userIcon'  style='float:left   ; text-align:center' hidden></span> 
+   
         </div>
-        
+    <div id="friendschats"></div>
+    </div>
+	
+    </div>	
 
-
-        <div id="friends" class= "tab">
-        	<div class="friend">
-            	<img src="icon.jpg" />
-               
-                
-                <p>
-                	<strong> username </strong>
-                    <!-- <span>marjoseph@gmail.com</span> -->
-                </p>
-               
-            </div>
-            
-            <div class="friend">
-                <img src="icon.jpg" />
-                <p>
-                	<strong>Martin Joseph</strong>
-	                <span>marjoseph@gmail.com</span>
-                </p>
-               
-            </div>
-            
-          
-        
-        </div>  
 
 
           <!-- all users  -->
         <div id="allusers" class= "tab" hidden>
 
-            <!--  -->
-        	<div class="allusers" id="username123">
-                <img src="icon.jpg" />
-               
-                
-                <p>
-                	<strong> username123 </strong>
-                    <!-- <span>marjoseph@gmail.com</span> -->
-                </p>
-               
-            </div>
-
+         
         </div>
 
 
@@ -162,6 +130,7 @@
 </div>	
 
 </div>
+<script src="jquery-3.5.1.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="animation.js"></script>
