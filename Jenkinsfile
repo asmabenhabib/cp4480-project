@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "git clone https://github.com/asmabenhabib/cp4480-project.git/"
+                sh "git clone https://github.com/asmabenhabib/cp4480-project.git"
                 echo 'Building..'
             }
         }
