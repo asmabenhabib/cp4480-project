@@ -9,7 +9,7 @@ var sha256 = require('js-sha256');
 app.use(express.static('webfiles'))
 app.use(express.json())
 app.use(cookieParser())
-var mysql  = require('mysql');
+var mysql = require('mysql');
 
 let connection = async (params) => new Promise(
     (resolve, reject) => {
@@ -43,16 +43,19 @@ let query = async (conn, q, params) => new Promise(
 //app.use(express.static('webfiles'))
 app.get('/api/users', async (req, res) => {
     try {
-        let authToken = req.cookies['userToken']
+        const breareheader = req.headers['authorization']
+        console.log(breareheader)
+        let authToken = breareheader
         let userDetails = jwt.verify(authToken, appSecretKey)
-        if (userDetails.exp !== undefined){ 
+        if (userDetails.exp !== undefined) {
             let con = await connection()
 
-                let result = await query(con,
-                    `select * from Users where userId<>${userDetails.userid}`)
-             res.send(result)}
-     } 
-    
+            let result = await query(con,
+                `select * from Users where userId<>${userDetails.userid}`)
+            res.send(result)
+        }
+    }
+
     catch (e) {
         res.status(401)
         res.send('not authorized')
@@ -60,73 +63,77 @@ app.get('/api/users', async (req, res) => {
 }
 )
 app.post('/api/chats', async (req, res) => {
-    try {   let authToken = req.cookies['userToken']
-    let userDetails = jwt.verify(authToken, appSecretKey)
-    let friendId = req.body.friendname
-    if (userDetails.exp !== undefined) {
-        let con = await connection()
-        //let friendId= await  query(con,`select userId from Users where userName="${friend}"`)
-        console.log(friendId)
-        let id
-         let chat= await query(con,
-            `select chatId from Chat where user1=${friendId} and user2=${userDetails.userid} or user2=${friendId} and user1=${userDetails.userid} `)
-       console.log(chat)
-            if(chat.length<1){
-            console.log(-1)
-            let maxIdChat= await query(con, `select max(chatId) as id from Chat`)
-            let maxId= maxIdChat[0].id+1
-            console.log(maxId)
+    try {
+        const breareheader = req.headers['authorization']
+        let authToken = breareheader
+        let userDetails = jwt.verify(authToken, appSecretKey)
+        let friendId = req.body.friendname
+        if (userDetails.exp !== undefined) {
+            let con = await connection()
+            //let friendId= await  query(con,`select userId from Users where userName="${friend}"`)
+            console.log(friendId)
+            let id
+            let chat = await query(con,
+                `select chatId from Chat where user1=${friendId} and user2=${userDetails.userid} or user2=${friendId} and user1=${userDetails.userid} `)
+            console.log(chat)
+            if (chat.length < 1) {
+                console.log(-1)
+                let maxIdChat = await query(con, `select max(chatId) as id from Chat`)
+                let maxId = maxIdChat[0].id + 1
+                console.log(maxId)
 
-            await query(con,`insert into Chat value (${maxId},${userDetails.userid}, ${friendId} )`)
-            console.log("done")
+                await query(con, `insert into Chat value (${maxId},${userDetails.userid}, ${friendId} )`)
+                console.log("done")
 
-            res.send(`${maxId}`)
+                res.send(`${maxId}`)
+            }
+            else {
+                id = chat[0].chatId
+                res.send(`${id}`)
+            }
         }
-        else{
-            id=chat[0].chatId
-            res.send(`${id}`)
-        }
-    }}
+    }
     catch (e) {
         res.status(401)
         res.send('not authorized')
     }
 
-    
-    }    )
+
+})
 app.get('/api/chats', async (req, res) => {
     try {
-        let authToken = req.cookies['userToken']
+        const breareheader = req.headers['authorization']
+        let authToken = breareheader
         let userDetails = jwt.verify(authToken, appSecretKey)
-        console.log(userDetails)
 
         if (userDetails.exp !== undefined) {
-            let chatArray=[]
+            let chatArray = []
             let con = await connection()
-                let result = await query(con,
-                    `select * from Chat where user1=${userDetails.userid} or user2=${userDetails.userid} `)
-                result.map(async(re, i)=>{    
-                    console.log(i)  
-                      if(userDetails.userid==re.user1){
-                        let friendname = await query(con,
-                            `select userName from Users where userId=${re.user2}`)                     
-                            chatArray.push({user:friendname[0].userName, chatId:re.chatId})
-                            console.log("Added", chatArray)
-                      }
-                      if(userDetails.userid==re.user2){
-                        let friendname = await query(con,
-                            `select userName from Users where userId=${re.user2}`)
-                            chatArray.push({user:friendname[0].userName, chatId:re.chatId})
-                            console.log("Added",chatArray)
-                     }
-                     if(i===result.length-1){
-                        console.log(chatArray)
-                        res.send(chatArray)
-                     }
-                    })
-                   
-     } }
-    
+            let result = await query(con,
+                `select * from Chat where user1=${userDetails.userid} or user2=${userDetails.userid} `)
+            result.map(async (re, i) => {
+                console.log(i)
+                if (userDetails.userid == re.user1) {
+                    let friendname = await query(con,
+                        `select userName from Users where userId=${re.user2}`)
+                    chatArray.push({ user: friendname[0].userName, chatId: re.chatId })
+                    console.log("Added", chatArray)
+                }
+                if (userDetails.userid == re.user2) {
+                    let friendname = await query(con,
+                        `select userName from Users where userId=${re.user2}`)
+                    chatArray.push({ user: friendname[0].userName, chatId: re.chatId })
+                    console.log("Added", chatArray)
+                }
+                if (i === result.length - 1) {
+                    console.log(chatArray)
+                    res.send(chatArray)
+                }
+            })
+
+        }
+    }
+
     catch (e) {
         res.status(401)
         res.send('not authorized')
@@ -137,35 +144,38 @@ app.get('/api/chats', async (req, res) => {
 )
 app.get('/api/admin/chats', async (req, res) => {
     try {
-        let authToken = req.cookies['userToken']
+
+        const breareheader = req.headers['authorization']
+        let authToken = breareheader
         let userDetails = jwt.verify(authToken, appSecretKey)
         console.log(userDetails)
 
         if (userDetails.exp !== undefined) {
-            let chatArray=[]
+            let chatArray = []
 
             let con = await connection()
             let result = await query(con,
                 `select * from Chat`)
-                
-                result.map(re=>{
-                  let chatResult
-  
-                    let users= re.user2 + " " + re.user1
-                    console.log(users)
 
-                    chatResult= {user:users, chatId:re.chatId}
-                    console.log(chatResult)
-                    
+            result.map(re => {
+                let chatResult
 
-                  chatArray.push(chatResult)
-                    
-            })            
-            
+                let users = re.user2 + " " + re.user1
+                console.log(users)
+
+                chatResult = { user: users, chatId: re.chatId }
+                console.log(chatResult)
+
+
+                chatArray.push(chatResult)
+
+            })
+
             // let chatResult= {user:result.user1, chatId:result.chatId}
-             res.send(chatArray)
-     } }
-    
+            res.send(chatArray)
+        }
+    }
+
     catch (e) {
         res.status(401)
         res.send('not authorized')
@@ -176,27 +186,27 @@ app.get('/api/admin/chats', async (req, res) => {
 app.post('/api/messages/:chatId', async (req, res) => {
     try {
         let Message = req.body.message
-        console.log(Message)
-        let authToken = req.cookies['userToken']
+        const breareheader = req.headers['authorization']
+        let authToken = breareheader
         let userDetails = jwt.verify(authToken, appSecretKey)
-        let maxId=1
+        let maxId = 1
         if (userDetails.exp !== undefined) {
             let con = await connection()
-            await query(con, 'select max(MessageId) as id from Message;',async function (err, result, fields) {
+            await query(con, 'select max(number) as id from Message;', async function (err, result, fields) {
                 if (err) throw err;
-                maxId=result[0].id+1
+                maxId = result[0].id + 1
                 console.log(maxId)
                 await query(con,
                     `insert into Message values 
-                    (${maxId},${req.params.chatId},"${Message}", ${userDetails.userid});`,function (err, result, fields) {
-                     if (err) throw err;
-                     console.log("ok")
-                     res.send("ok") 
-                              
-                     });
-              });
-            
-            
+                    (${maxId},${req.params.chatId},"${Message}", ${userDetails.userid});`, function (err, result, fields) {
+                    if (err) throw err;
+                    console.log("ok")
+                    res.send("ok")
+
+                });
+            });
+
+
         }
     }
     catch (e) {
@@ -208,15 +218,16 @@ app.post('/api/messages/:chatId', async (req, res) => {
 app.get('/api/messages/:chatId', async (req, res) => {
     console.log(req.params.chatId)
     try {
-        let authToken = req.cookies['userToken']
+        const breareheader = req.headers['authorization']
+        let authToken = breareheader
         let userDetails = jwt.verify(authToken, appSecretKey)
-        
+
         if (userDetails.exp !== undefined) {
             let con = await connection()
             let result = await query(con,
-              `select * from Message where chatId=${req.params.chatId}`)
-              console.log(result)
-             res.send(result)
+                `select * from Message where chatId=${req.params.chatId}`)
+            console.log(result)
+            res.send(result)
         }
     }
     catch (e) {
@@ -225,50 +236,55 @@ app.get('/api/messages/:chatId', async (req, res) => {
     }
 
 })
-app.post('/api/login',async(req, res) => {
+app.post('/api/login', async (req, res) => {
     let u = req.body.username
     let p = req.body.password
     //let users = [{ u: 'admin', p: 'passwordAdmin' }, { u: 'Aya', p: 'password1' }, { u: "Lana", p: "password2" }]
     let con = await connection()
-   console.log(u, p)
-    let result = await query(con,`select * from Users where userName="${u}"`)
-    let saltedpass= p+result[0].salt
-    let hashedpass=sha256(saltedpass)
-    
-        if(result[0].userPassword==hashedpass){
-            
-            if (u === "admin") {
-                userInfo = {
-                    userid:result[0].userId,
-                    name: u,
-                    type: 'admin'
-                }
+    console.log(u, p)
+    let result = await query(con, `select * from Users where userName="${u}"`)
+    let saltedpass = p + result[0].salt
+    let hashedpass = sha256(saltedpass)
+
+    if (result[0].userPassword == hashedpass) {
+
+        if (u === "admin") {
+            userInfo = {
+                userid: result[0].userId,
+                name: u,
+                type: 'admin'
             }
-            else {
-                userInfo = {
-                    userid:result[0].userId,
-                    name: u,
-                    type: 'user'
-                }
-            }
-            let token = jwt.sign(userInfo, appSecretKey, { expiresIn: 60 * 10 })
-            res.cookie('userToken', token, { httpOnly: true })
-            res.send({token, u })
-            
         }
-   
-else{
-    res.status(401)
-    res.send("not authorized")
-}
-    
+        else {
+            userInfo = {
+                userid: result[0].userId,
+                name: u,
+                type: 'user'
+            }
+        }
+        let token = jwt.sign(userInfo, appSecretKey, { expiresIn: 60 * 10 })
+        res.cookie('userToken', token, { httpOnly: true })
+        res.send({ token, u })
+
+    }
+
+    else {
+        res.status(401)
+        res.send("not authorized")
+    }
+
 
 })
 
 app.post('/api/logout', (req, res) => {
     // do nothing here for now but maybe we could record the action in the log
-    res.cookie('userToken', '', { expires: new Date(Date.now() - 1) })
-    res.send('ok')
+    const breareheader = req.headers['authorization']
+    console.log(breareheader)
+    let authToken = breareheader
+    let userDetails = jwt.verify(authToken, appSecretKey)
+  //  userDetails.expires=new Date(Date.now() - 1) 
+    //  res.cookie('userToken', '', { expires: new Date(Date.now() - 1) })
+    //res.send('ok')
 })
 app.listen(port, () => {
     console.log("app started")

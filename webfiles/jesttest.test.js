@@ -1,13 +1,11 @@
 const axios = require('axios');
 let user
 test('login', async () => {
-   await axios.post('http://127.0.0.1:4000/api/login', { withCredentials: true }, {
+  let token= await axios.post('http://127.0.0.1:4000/api/login', { withCredentials: true }, {
         username: 'admin',
         password: 'passwordadmin'
     })
-        .then(function (response) {
-            expect(response).toBe('admin');
-        })
+      expect(token.u).toBe('admin') 
 });
 test('chats',() => {
     let result = axios.get('http://127.0.0.1:4000/api/chats', { withCredentials: true })
