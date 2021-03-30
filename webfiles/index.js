@@ -21,7 +21,7 @@ function loadFriends(){
             data.forEach((a) => {
                 listFriends += `<div class="friend">
             	<img src="icon.jpg" />
-                <p onclick="startChat(${a.userId})">
+                <p id="${a.userId}" onclick="startChat(${a.userId})">
                 	<strong> ${a.userName} </strong>
                 </p>
             </div>`
@@ -95,7 +95,10 @@ function loadChats() {
     }
     )
 } 
-function loadAdminChats() {     
+function loadAdminChats() {    
+    document.getElementById('topmenu').getElementsByTagName('span')[0].style.background = `url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/top-menu.png") ${-3}px ${-46}px no-repeat`
+    document.getElementById('chats').style.background = `url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/top-menu.png") ${-95}px ${-118}px no-repeat`    
+    
     let authToken = sessionStorage.getItem('authorization')
 
      
@@ -148,7 +151,7 @@ function getChat(chatId) {
                     <div class="bubble">
                     <p> ${a.message} </p>
                         
-                       <br>
+                       
                         </div>
                     </div>
                 `
@@ -181,17 +184,18 @@ function getUserChat(chatId) {
             let listMessages = `
             `
             data.forEach((a) => {
-                console.log(a)
                 listMessages += `
-                
+                <div class="row">
                 <div class="message">
                     <div class="bubble">
                     <p> ${a.message} </p>
                         
                         </div>
                     </div>
-                    <br></br>
+                    </div>
+
                 `
+                listMessages +=`<br>`
             })
             
           $("#friendschats").html(listMessages)

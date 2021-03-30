@@ -9,7 +9,7 @@
 
 
     </head>
-<body onload="loadAdminChats()">
+<body onload="loadFriends()">
   
 <div class="container">
 
@@ -26,10 +26,15 @@
     
     <div id="friendslist">
         <div id="topmenu" style = 'text-align:center'>
-            <span class="friends"  id='friendsIcon'  onclick="loadChats()" style='float:left; text-align:center' >My Chat</span>
+            <span class="history"   id='friendsIcon'  onclick="loadFriends()"  style='float:left   ; text-align:center' >
+            Users
+            </span> 
+
+            <span class="friends"  id='chats'  onclick="loadChats()" style='float:left; text-align:center' >
+                My Chat</span>
             
-            <span class="chats"   id='allusersIcon' onclick="loadAdminChats()"  style='float:left ; text-align:center'>All Users</span> 
-            <span class="history"   id='userIcon'  style='float:left   ; text-align:center' hidden></span> 
+            <span class="chats"   id='chats1' onclick="loadAdminChats()"
+              style='float:left ; text-align:center'>All Chats</span> 
    
         </div>
     <div id="friendschats"></div>
