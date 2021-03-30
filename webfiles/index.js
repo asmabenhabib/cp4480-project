@@ -23,10 +23,11 @@ function loadFriends(){
             })
             // listChats +=`</div>`	
           $("#friendschats").html(listFriends)
-      
-       
+        return true
+        
      },
         error: function(j,t,e) {
+            return false
             // window.location.href='/'
          }
     }
@@ -190,27 +191,30 @@ function send(chatId){
         data: JSON.stringify(PostRequest),
         success: function(result) {
             console.log(result)
+            return(result)
             //window.location.href = '/mainpage.html'
         },
         error: function(x, t, s) {
             alert("sorry")
+            return("failed")
+
            //window.location.href = '/'
      } })
      
 }
-function doLogout() {
-    $.ajax({
-        url: "/api/logout",
-        method: "post",
-        success: function(result) {
-            window.location.href = '/'
-        },
-        error: function(x, t, s) {
-            window.location.href = '/'
-        }
-    })
+// function doLogout() {
+//     $.ajax({
+//         url: "/api/logout",
+//         method: "post",
+//         success: function(result) {
+//             window.location.href = '/'
+//         },
+//         error: function(x, t, s) {
+//             window.location.href = '/'
+//         }
+//     })
     
-}
+// }
 
 // $(function() {
 //     loadContacts()
@@ -233,17 +237,21 @@ function doLogin() {
         data: JSON.stringify(loginRequest),
         success: function(result) {
             console.log(result)
-                 if (result=="admin"){
+                 if (result.u=="admin"){
+                     //console.log("loged")
                     window.location.href="/admin.html"
                  }
                  else{
-                     window.location.href="/mainpage.html"
+                      
+                     window.location.href="/index.html"
+                     //console.log(result)
                  }
-              
+              return true
         },
         error: function(j,t, e) {
            // window.location.href="/index.html"
             alert("Go away!")
+            return false 
         }
 
     })

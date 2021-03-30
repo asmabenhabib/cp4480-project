@@ -5,7 +5,7 @@ let app = express()
 let port = 4000
 app.use(express.json())
 let appSecretKey = '30u40474bh8o234573dfhv'
-
+var sha256 = require('js-sha256');
 app.use(express.static('webfiles'))
 app.use(express.json())
 app.use(cookieParser())
@@ -49,7 +49,7 @@ app.get('/api/users', async (req, res) => {
             let con = await connection()
 
                 let result = await query(con,
-                    `select * from Users`)
+                    `select * from Users where userId<>${userDetails.userid}`)
              res.send(result)}
      } 
     
@@ -79,8 +79,6 @@ app.post('/api/chats', async (req, res) => {
 
             await query(con,`insert into Chat value (${maxId},${userDetails.userid}, ${friendId} )`)
             console.log("done")
-          //  res.status(200)
-
 
             res.send(`${maxId}`)
         }
@@ -232,12 +230,13 @@ app.post('/api/login',async(req, res) => {
     let p = req.body.password
     //let users = [{ u: 'admin', p: 'passwordAdmin' }, { u: 'Aya', p: 'password1' }, { u: "Lana", p: "password2" }]
     let con = await connection()
-   
+   console.log(u, p)
     let result = await query(con,`select * from Users where userName="${u}"`)
-    console.log(result)
+    let saltedpass= p+result[0].salt
+    let hashedpass=sha256(saltedpass)
     
-        if(result[0].userPassword==p){
-            console.log("u r in")
+        if(result[0].userPassword==hashedpass){
+            
             if (u === "admin") {
                 userInfo = {
                     userid:result[0].userId,
@@ -254,8 +253,8 @@ app.post('/api/login',async(req, res) => {
             }
             let token = jwt.sign(userInfo, appSecretKey, { expiresIn: 60 * 10 })
             res.cookie('userToken', token, { httpOnly: true })
-            res.send(u)
-            return
+            res.send({token, u })
+            
         }
    
 else{
