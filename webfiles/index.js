@@ -290,7 +290,7 @@ function doLogin() {
               return true
         },
         error: function(j,t, e) {
-           window.location.href="/index.html"
+//            window.location.href="/index.html"
             alert("Go away!")
             return false 
         }
