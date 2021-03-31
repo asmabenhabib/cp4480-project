@@ -15,8 +15,8 @@ let connection = async (params) => new Promise(
     (resolve, reject) => {
         const connection = mysql.createConnection({
             host: 'localhost',
-            user: 'root',
-            password: 'Rose@2000',
+            user: 'projectadmin',
+            password: 'tvpassword',
             database: 'Messagesproject'
         });
         connection.connect(error => {
