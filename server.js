@@ -28,7 +28,7 @@ let connection = async (params) => Promise(
             resolve(connection);
         })
     });
-let query = async (conn, q, params) => new Promise(
+let query = async (conn, q, params) => Promise(
     (resolve, reject) => {
         const handler = (error, result) => {
             if (error) {
