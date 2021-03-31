@@ -1,2 +1,2 @@
 #!/bin/bash
-systemctl daemon-reload
+sudo systemctl daemon-reload
