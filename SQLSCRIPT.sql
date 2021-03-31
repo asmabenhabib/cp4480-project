@@ -9,7 +9,7 @@ use Messagesproject;
 create table Users (
     userId int not null primary key,
     userName varchar(50) not null,
-    userPassword varchar(50) not null,
+    userPassword varchar(100) not null,
 	   salt varchar(100) not null
  );
  insert into Users value(0, 'user1',  '2d36c9cb2ab3b18ca572cb6a596c010524ce59d4ece9728a74e679249eb1242a',  '1234'  );
