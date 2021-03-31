@@ -17,7 +17,7 @@ insert into Users value(2, 'user3', 'password3');
 insert into Users value(3, 'user4', 'password4');
 insert into Users value(4, 'user5', 'password5');
 insert into Users value(5, 'admin', 'passwordadmin');
-Drop table Chat;
+Drop table if exists Chat;
 
  create table Chat (
     chatId int not null primary key,
@@ -28,7 +28,7 @@ Drop table Chat;
      CONSTRAINT FK_chat FOREIGN KEY (user2)
      REFERENCES Users(userId)
  );
- drop table Message;
+ drop table if exists Message;
 create table Message (
    number int not null primary key,
    chatId int not null,
