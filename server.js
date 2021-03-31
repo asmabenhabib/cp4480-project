@@ -99,7 +99,7 @@ app.post('/api/chats', async (req, res) => {
     }
     catch (e) {
         res.status(401)
-        res.send('not authorized')
+        res.send('not authorized for 1')
     }
 })();
 
