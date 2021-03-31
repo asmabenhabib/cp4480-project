@@ -37,7 +37,7 @@ create table Message (
    CONSTRAINT FK_chat3 FOREIGN KEY (chatId)
     REFERENCES Chat(chatId)
 );
-insert into Chat values (1, 'admin', 'Lana');
+insert into Chat values (1, 5, 4);
 insert into Message values (0, 1, 'Hii', 'Lana');
  select * from Chat; 
 select * from Message;
