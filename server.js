@@ -11,7 +11,7 @@ app.use(express.json())
 app.use(cookieParser())
 var mysql = require('mysql');
 
-let connection = async (params) => Promise(
+let connection = async (params) => new Promise(
     (resolve, reject) => {
         const connection = mysql.createConnection({
             host: 'localhost',
@@ -28,7 +28,7 @@ let connection = async (params) => Promise(
             resolve(connection);
         })
     });
-let query = async (conn, q, params) => Promise(
+let query = async (conn, q, params) => new Promise(
     (resolve, reject) => {
         const handler = (error, result) => {
             if (error) {
