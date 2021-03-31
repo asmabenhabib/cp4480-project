@@ -249,6 +249,7 @@ app.get('/api/messages/:chatId', async (req, res) => {
 app.post('/api/login', async (req, res) => {
     let u = req.body.username
     let p = req.body.password
+    console.log("djksfjkdsjrf")
     //let users = [{ u: 'admin', p: 'passwordAdmin' }, { u: 'Aya', p: 'password1' }, { u: "Lana", p: "password2" }]
     let con = await connection()
     console.log("username: ",u)
@@ -284,7 +285,7 @@ app.post('/api/login', async (req, res) => {
         res.send("not authorized")
     }
 
-
+res.send("Login works")
 })
 
 app.post('/api/logout', (req, res) => {
