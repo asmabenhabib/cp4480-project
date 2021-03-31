@@ -23,9 +23,9 @@ Drop table if exists Chat;
     chatId int not null primary key,
     user1 int not null,
     user2 int not null,
-     CONSTRAINT FK_chat FOREIGN KEY (user1)
+     CONSTRAINT FK_chat1 FOREIGN KEY (user1)
      REFERENCES Users(userId),
-     CONSTRAINT FK_chat FOREIGN KEY (user2)
+     CONSTRAINT FK_chat2 FOREIGN KEY (user2)
      REFERENCES Users(userId)
  );
  drop table if exists Message;
@@ -34,7 +34,7 @@ create table Message (
    chatId int not null,
    message varchar(50) not null,
    sender varchar(50) not null, 
-   CONSTRAINT FK_chat FOREIGN KEY (chatId)
+   CONSTRAINT FK_chat1 FOREIGN KEY (chatId)
     REFERENCES chat(chatId)
 );
 insert into Chat values (1, 'admin', 'Lana');
