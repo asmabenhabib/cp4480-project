@@ -250,7 +250,8 @@ app.post('/api/login', async (req, res) => {
     let p = req.body.password
     //let users = [{ u: 'admin', p: 'passwordAdmin' }, { u: 'Aya', p: 'password1' }, { u: "Lana", p: "password2" }]
     let con = await connection()
-    console.log(u, p)
+    console.log("username: ",u)
+    console.log("password: ",p)
     let result = await query(con, `select * from Users where userName="${u}"`)
     let saltedpass = p + result[0].salt
     let hashedpass = sha256(saltedpass)
