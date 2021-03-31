@@ -11,11 +11,11 @@ create table Users (
     userPassword varchar(50) not null
  );
 insert into Users value(0, 'user1', 'password1');
-insert into Users value(0, 'user2', 'password2');
-insert into Users value(0, 'user3', 'password3');
-insert into Users value(0, 'user4', 'password4');
-insert into Users value(0, 'user5', 'password5');
-insert into Users value(0, 'admin', 'passwordadmin');
+insert into Users value(1, 'user2', 'password2');
+insert into Users value(2, 'user3', 'password3');
+insert into Users value(3, 'user4', 'password4');
+insert into Users value(4, 'user5', 'password5');
+insert into Users value(5, 'admin', 'passwordadmin');
 Drop table Chat;
 
  create table Chat (
