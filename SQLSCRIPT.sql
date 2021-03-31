@@ -35,9 +35,9 @@ create table Message (
    message varchar(50) not null,
    sender varchar(50) not null, 
    CONSTRAINT FK_chat1 FOREIGN KEY (chatId)
-    REFERENCES chat(chatId)
+    REFERENCES Chat(chatId)
 );
 insert into Chat values (1, 'admin', 'Lana');
-insert into messages values (0, 1, 'Hii', 'Lana');
+insert into Message values (0, 1, 'Hii', 'Lana');
  select * from Chat; 
 select * from Message;
