@@ -42,6 +42,7 @@ let query = async (conn, q, params) => new Promise(
 
 //app.use(express.static('webfiles'))
 app.get('/api/users', async (req, res) => {
+    (async () => {
     try {
         const breareheader = req.headers['authorization']
         console.log(breareheader)
@@ -60,9 +61,11 @@ app.get('/api/users', async (req, res) => {
         res.status(401)
         res.send('not authorized')
     }
+        })();
 }
 )
 app.post('/api/chats', async (req, res) => {
+    (async () => {
     try {
         const breareheader = req.headers['authorization']
         let authToken = breareheader
@@ -97,10 +100,11 @@ app.post('/api/chats', async (req, res) => {
         res.status(401)
         res.send('not authorized')
     }
-
+})();
 
 })
 app.get('/api/chats', async (req, res) => {
+    (async () => {
     try {
         const breareheader = req.headers['authorization']
         let authToken = breareheader
@@ -138,11 +142,13 @@ app.get('/api/chats', async (req, res) => {
         res.status(401)
         res.send('not authorized')
     }
+        })();
 }
 
 
 )
 app.get('/api/admin/chats', async (req, res) => {
+    (async () => {
     try {
 
         const breareheader = req.headers['authorization']
@@ -180,10 +186,12 @@ app.get('/api/admin/chats', async (req, res) => {
         res.status(401)
         res.send('not authorized')
     }
+        })();
 }
 
 )
 app.post('/api/messages/:chatId', async (req, res) => {
+    (async () => {
     try {
         let Message = req.body.message
         const breareheader = req.headers['authorization']
@@ -213,9 +221,10 @@ app.post('/api/messages/:chatId', async (req, res) => {
         res.status(401)
         res.send('not authorized')
     }
-
+ })();
 })
 app.get('/api/messages/:chatId', async (req, res) => {
+    (async () => {
     console.log(req.params.chatId)
     try {
         const breareheader = req.headers['authorization']
@@ -234,7 +243,7 @@ app.get('/api/messages/:chatId', async (req, res) => {
         res.status(401)
         res.send('not authorized')
     }
-
+})();
 })
 app.post('/api/login', async (req, res) => {
     let u = req.body.username
