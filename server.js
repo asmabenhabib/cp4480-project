@@ -6,7 +6,7 @@ let port = 4000
 app.use(express.json())
 let appSecretKey = '30u40474bh8o234573dfhv'
 var sha256 = require('js-sha256');
-app.use(express.static('webfiles'))
+// app.use(express.static('webfiles'))
 app.use(express.json())
 app.use(cookieParser())
 var mysql = require('mysql');
