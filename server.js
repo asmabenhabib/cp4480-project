@@ -21,6 +21,7 @@ let connection = async (params) => new Promise(
         });
         connection.connect(error => {
             if (error) {
+                console.log(error)
                 reject(error);
                 return;
             }
