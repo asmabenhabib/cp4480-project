@@ -11,7 +11,7 @@ app.use(express.json())
 app.use(cookieParser())
 var mysql = require('mysql');
 
-let connection = async (params) => new Promise(
+let connection = async (params) => Promise(
     (resolve, reject) => {
         const connection = mysql.createConnection({
             host: 'localhost',
