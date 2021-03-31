@@ -247,6 +247,7 @@ app.get('/api/messages/:chatId', async (req, res) => {
 })();
 })
 app.post('/api/login', async (req, res) => {
+    console.log("djksfjkdsjrf")
     let u = req.body.username
     let p = req.body.password
     console.log("djksfjkdsjrf")
