@@ -5,6 +5,7 @@
  create database Messagesproject;
  create user projectadmin@localhost identified by 'tvpassword';
 grant all on Messagesproject.* to projectadmin@localhost;
+FLUSH PRIVILEGES;
 use Messagesproject;
 create table Users (
     userId int not null primary key,
