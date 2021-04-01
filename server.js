@@ -16,7 +16,7 @@ let connection = async (params) => new Promise(
     (resolve, reject) => {
         const connection = mysql.createConnection({
             host: 'localhost',
-            user: 'projectadmin',
+            user: 'projectAdmin',
             password: 'projectadmin',
             database: 'Messagesproject',
             insecureAuth: true
