@@ -15,7 +15,7 @@ create table Users (
     userPassword varchar(100) not null,
 	   salt varchar(100) not null
  );
- insert into Users value(0, 'user1',  '2d36c9cb2ab3b18ca572cb6a596c010524ce59d4ece9728a74e679249eb1242a',  '1234'  );
+ insert into Users value(0, 'user1',  'f5fadd9727e76b77a72b323fe4ca9c9dde347cbc22cd46d41d6a9376656221ca',  '1234'  );
 insert into Users value(1, 'user2', 'c168e0bf782588bc08008fb8e94347a0f0bcf88270ac964f4ba3855e823bb0d9', 'salt');
 insert into Users value(2, 'user3', '9f13e3ed8530f84790b7ecaf90fb1088236efa0f54068ad4c6730509b304e2f1', '1245' );
 insert into Users value(3, 'user4', '69b0e4db31734a8f948ba29c60734f2fb095947ad1e273a752158d1766e208ed','1122' );
