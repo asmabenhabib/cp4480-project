@@ -10,9 +10,9 @@ FLUSH PRIVILEGES;
 ALTER USER 'projectAdmin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'tvpassword';
 FLUSH PRIVILEGES;
 use Messagesproject;
-drop table Message;
- Drop table Chat;
-drop table users;
+drop table if exists Message;
+ Drop table if exists Chat;
+drop table if exists users;
 create table Users (
     userId int not null primary key,
     userName varchar(50) not null,
