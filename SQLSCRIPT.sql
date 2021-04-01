@@ -51,7 +51,7 @@ create table Message (
 
    sender int not null, 
    CONSTRAINT FK_Message FOREIGN KEY (chatId)
-    REFERENCES chat(chatId),
+    REFERENCES Chat(chatId),
     CONSTRAINT FK_Message2 FOREIGN KEY (sender)
     REFERENCES Users(userId)
 );
