@@ -15,7 +15,7 @@ var mysql = require('mysql');
 let connection = async (params) => new Promise(
     (resolve, reject) => {
         const connection = mysql.createConnection({
-            host: 'localhost',
+            host: 'http://192.168.0.110',
             user: 'root',
             password: 'password',
             database: 'Messagesproject',
