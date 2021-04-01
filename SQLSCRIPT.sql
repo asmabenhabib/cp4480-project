@@ -3,8 +3,8 @@
  DROP DATABASE IF EXISTS Messagesproject;
  
  create database Messagesproject;
- create user projectadmin@localhost identified by 'tvpassword';
-grant all on Messagesproject.* to projectadmin@localhost;
+ create user projectAdmin@localhost identified by 'tvpassword';
+grant all on Messagesproject.* to projectAdmin@localhost;
 FLUSH PRIVILEGES;
 use Messagesproject;
 create table Users (
