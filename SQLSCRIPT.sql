@@ -6,6 +6,8 @@
  create user projectAdmin@localhost identified by 'tvpassword';
 grant all privileges on *.* to projectAdmin@localhost;
 FLUSH PRIVILEGES;
+ALTER USER 'projectAdmin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'tvpassword';
+FLUSH PRIVILEGES;
 use Messagesproject;
 create table Users (
     userId int not null primary key,
