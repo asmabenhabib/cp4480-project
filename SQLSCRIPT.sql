@@ -4,10 +4,9 @@
  DROP DATABASE IF EXISTS Messagesproject;
  
  create database Messagesproject;
- create user projectAdmin@localhost identified by 'tvpassword';
+ create user projectAdmin@localhost identified by 'password';
+ ALTER USER 'projectAdmin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 grant all privileges on *.* to projectAdmin@localhost;
-FLUSH PRIVILEGES;
-ALTER USER 'projectAdmin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'tvpassword';
 FLUSH PRIVILEGES;
 use Messagesproject;
 drop table if exists Message;
