@@ -11,12 +11,12 @@ app.use(express.json())
 app.use(cookieParser())
 var mysql = require('mysql');
 
-let connection = async () => new Promise(
+let connection = async (params) => new Promise(
     (resolve, reject) => {
         const connection = mysql.createConnection({
             host: 'localhost',
-            user: 'root',
-            password: 'password',
+            user: 'projectAdmin',
+            password: 'tvpassword',
             database: 'Messagesproject'
         });
         connection.connect(error => {
