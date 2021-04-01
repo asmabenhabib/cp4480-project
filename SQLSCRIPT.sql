@@ -1,4 +1,4 @@
- DROP USER IF EXISTS projectadmin@localhost;
+ DROP USER IF EXISTS projectAdmin@localhost;
  FLUSH PRIVILEGES;
  DROP DATABASE IF EXISTS Messagesproject;
  
