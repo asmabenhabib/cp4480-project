@@ -19,7 +19,7 @@ let connection = async (params) => new Promise(
             user: 'projectAdmin',
             password: 'tvpassword',
             database: 'Messagesproject',
-            insecureAuth: 'true'
+            insecureAuth: true
         });
         connection.connect(error => {
             if (error) {
