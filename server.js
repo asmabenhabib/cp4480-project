@@ -18,7 +18,8 @@ let connection = async (params) => new Promise(
             host: 'localhost',
             user: 'projectadmin',
             password: 'ProjectAdmin@4480',
-            database: 'Messagesproject'
+            database: 'Messagesproject',
+            insecureAuth: 'true'
         });
         connection.connect(error => {
             if (error) {
