@@ -1,3 +1,4 @@
+
 let express = require("express")
 let jwt = require('jsonwebtoken')
 let cookieParser = require('cookie-parser')
@@ -84,11 +85,13 @@ app.post('/api/chats', async (req, res) => {
 
                 await query(con, `insert into Chat value (${maxId},${userDetails.userid}, ${friendId} )`)
                 console.log("done")
-
+                res.status(200)
                 res.send(`${maxId}`)
             }
             else {
                 id = chat[0].chatId
+                res.status(200)
+
                 res.send(`${id}`)
             }
         }
@@ -117,16 +120,17 @@ app.get('/api/chats', async (req, res) => {
                     let friendname = await query(con,
                         `select userName from Users where userId=${re.user2}`)
                     chatArray.push({ user: friendname[0].userName, chatId: re.chatId })
-                    console.log("Added", chatArray)
+                    
                 }
                 if (userDetails.userid == re.user2) {
                     let friendname = await query(con,
-                        `select userName from Users where userId=${re.user2}`)
+                        `select userName from Users where userId=${re.user1}`)
                     chatArray.push({ user: friendname[0].userName, chatId: re.chatId })
-                    console.log("Added", chatArray)
+                    
                 }
                 if (i === result.length - 1) {
                     console.log(chatArray)
+                    res.status(200)
                     res.send(chatArray)
                 }
             })
@@ -170,7 +174,7 @@ app.get('/api/admin/chats', async (req, res) => {
                 chatArray.push(chatResult)
 
             })
-
+            res.status(200)
             // let chatResult= {user:result.user1, chatId:result.chatId}
             res.send(chatArray)
         }
@@ -200,7 +204,7 @@ app.post('/api/messages/:chatId', async (req, res) => {
                     `insert into Message values 
                     (${maxId},${req.params.chatId},"${Message}", ${userDetails.userid});`, function (err, result, fields) {
                     if (err) throw err;
-                    console.log("ok")
+                    res.status(200)
                     res.send("ok")
 
                 });
@@ -226,8 +230,8 @@ app.get('/api/messages/:chatId', async (req, res) => {
             let con = await connection()
             let result = await query(con,
                 `select * from Message where chatId=${req.params.chatId}`)
-            console.log(result)
-            res.send(result)
+res.status(200)
+                res.send(result)
         }
     }
     catch (e) {
@@ -263,7 +267,10 @@ app.post('/api/login', async (req, res) => {
             }
         }
         let token = jwt.sign(userInfo, appSecretKey, { expiresIn: 60 * 10 })
-        res.cookie('userToken', token, { httpOnly: true })
+        //res.cookie('userToken', token, { httpOnly: true })
+        console.log(token)
+        res.status(200)
+
         res.send({ token, u })
 
     }

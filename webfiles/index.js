@@ -1,5 +1,4 @@
 var script = document.createElement('script');
-
 script.src = 'https://code.jquery.com/jquery-3.5.1.min.js';
 script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
@@ -19,9 +18,9 @@ function loadFriends(){
         success: function(data) {
             let listFriends = ``
             data.forEach((a) => {
-                listFriends += `<div class="friend">
+                listFriends += `<div  id="user${a.userId}" onclick="startChat(${a.userId})" class="friend">
             	<img src="icon.jpg" />
-                <p id="${a.userId}" onclick="startChat(${a.userId})">
+                <p>
                 	<strong> ${a.userName} </strong>
                 </p>
             </div>`
@@ -77,7 +76,7 @@ function loadChats() {
             data.forEach((a) => {
                 listChats += `<div class="friend">
             	<img src="icon.jpg" />
-                <p onclick="getChat(${a.chatId})">
+                <p id="chat${a.chatId}" onclick="getChat(${a.chatId})">
                 	<strong> user ${a.user} </strong>
                 </p>
             </div>`
@@ -114,7 +113,7 @@ function loadAdminChats() {
             data.forEach((a) => {
                 listChats += `<div class="friend">
             	<img src="icon.jpg" />
-                <p onclick="getUserChat(${a.chatId})">
+                <p id="userChat${a.chatId}" onclick="getUserChat(${a.chatId})">
                 	<strong> ${a.user} </strong>
                 </p>
             </div>`
@@ -157,8 +156,8 @@ function getChat(chatId) {
                 `
             })
             listMessages += ` <div id="sendmessage">
-                   	<input type="text" id ="currenMessage"  />
-                     <button onclick="send(${chatId})" >send</button></div>`
+                   	<input type="text" id="currenMessage"  />
+                     <button id="sendMessage" onclick="send(${chatId})" >send</button></div>`
           $("#friendschats").html(listMessages)
       
        

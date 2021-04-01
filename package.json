@@ -1,0 +1,25 @@
+{
+  "name": "cp4480-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  
+    "testEnvironment":"node",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asmabenhabib/cp4480-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asmabenhabib/cp4480-project/issues"
+  },
+  "homepage": "https://github.com/asmabenhabib/cp4480-project#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
