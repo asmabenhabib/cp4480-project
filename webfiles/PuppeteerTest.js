@@ -34,7 +34,7 @@ async function testChat(result, page) {
         let Allchats = await page.$('#chats')
         await Allchats.click()
         await page.waitForSelector('#chat1')
-        let chat = await page.$('#chat2')
+        let chat = await page.$('#chat1')
         await chat.click()
         await page.waitForSelector('#currenMessage')
         await page.focus('#currenMessage')
