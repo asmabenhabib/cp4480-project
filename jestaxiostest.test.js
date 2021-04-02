@@ -5,14 +5,14 @@
  const axios= require('axios')
  const {test, expect}= require('@jest/globals')
  test('succcess login', async()=>{
-  let res = await axios.post(`http://192.168.0.110:4000/api/login`, {
+  let res = await axios.post(`http://192.168.0.110:3000/api/login`, {
          "username": 'admin',
          "password": 'passwordadmin'
      })
          expect(res.status).toBe(200)
  })
  test('fail login', async()=>{
-     let res = await axios.post(`http://192.168.0.110:4000/api/login`, {
+     let res = await axios.post(`http://192.168.0.110:3000/api/login`, {
             "username": 'admin',
             "password": 'password'
         }).catch(function(error){
@@ -21,12 +21,12 @@
            
     })
     test('get users', async()=>{
-     let res = await axios.post(`http://192.168.0.110:4000/api/login`, {
+     let res = await axios.post(`http://192.168.0.110:3000/api/login`, {
          "username": 'admin',
          "password": 'passwordadmin'
      })
      let token=res.data.token
-     let Users = await axios.get('http://192.168.0.110:4000/api/users',{
+     let Users = await axios.get('http://192.168.0.110:3000/api/users',{
          headers:{
              Authorization:`${token}`
          }
@@ -35,7 +35,7 @@
     })
     test('get users with no token', async()=>{
      let token=""
-     let Users = await axios.get('http://192.168.0.110:4000/api/users',{
+     let Users = await axios.get('http://192.168.0.110:3000/api/users',{
          headers:{
              Authorization:`${token}`
          }
@@ -45,12 +45,12 @@
         })
     })
     test('get Chats', async()=>{
-     let res = await axios.post(`http://192.168.0.110:4000/api/login`, {
+     let res = await axios.post(`http://192.168.0.110:3000/api/login`, {
          "username": 'admin',
          "password": 'passwordadmin'
      })
      let token=res.data.token
-     let Chats = await axios.get('http://192.168.0.110:4000/api/chats',{
+     let Chats = await axios.get('http://192.168.0.110:3000/api/chats',{
          headers:{
              Authorization:`${token}`
          }
@@ -59,7 +59,7 @@
     })
     test('get chats with no token', async()=>{
      let token=""
-     let Chats = await axios.get('http://192.168.0.110:4000/api/chats',{
+     let Chats = await axios.get('http://192.168.0.110:3000/api/chats',{
          headers:{
              Authorization:`${token}`
          }
@@ -71,12 +71,12 @@
  
  
     test('get admin chats', async()=>{
-     let res = await axios.post(`http://192.168.0.110:4000/api/login`, {
+     let res = await axios.post(`http://192.168.0.110:3000/api/login`, {
          "username": 'admin',
          "password": 'passwordadmin'
      })
      let token=res.data.token
-     let Chats = await axios.get('http://192.168.0.110:4000/api/admin/chats',{
+     let Chats = await axios.get('http://192.168.0.110:3000/api/admin/chats',{
          headers:{
              Authorization:`${token}`
          }
@@ -84,12 +84,12 @@
      expect(Chats.status).toBe(200)
     })
     test('get admin chats with user token', async()=>{
-     let res = await axios.post(`http://192.168.0.110:4000/api/login`, {
+     let res = await axios.post(`http://192.168.0.110:3000/api/login`, {
          "username": 'user1',
          "password": 'password1'
      })
      let token=res.data.token
-         let Chats = await axios.get('http://192.168.0.110:4000/api/admin/chats',{
+         let Chats = await axios.get('http://192.168.0.110:3000/api/admin/chats',{
          headers:{
              Authorization:`${token}`
          }
@@ -100,7 +100,7 @@
     })
     test('get admin chats with no token', async()=>{
      let token=""
-     let Chats = await axios.get('http://192.168.0.110:4000/api/admin/chats',{
+     let Chats = await axios.get('http://192.168.0.110:3000/api/admin/chats',{
          headers:{
              Authorization:`${token}`
          }
@@ -112,12 +112,12 @@
  
  
     test('post chats', async()=>{
-     let res = await axios.post(`http://192.168.0.110:4000/api/login`, {
+     let res = await axios.post(`http://192.168.0.110:3000/api/login`, {
          "username": 'user1',
          "password": 'password1'
      })
      let token=res.data.token
-     let PostChat = await axios.post('http://192.168.0.110:4000/api/chats',{
+     let PostChat = await axios.post('http://192.168.0.110:3000/api/chats',{
          friendname:3},{
          headers:{
              Authorization:`${token}`
@@ -127,7 +127,7 @@
     })
     test('post chats with no token', async()=>{
      let token=""
-     let PostChat = await axios.post('http://192.168.0.110:4000/api/chats',{
+     let PostChat = await axios.post('http://192.168.0.110:3000/api/chats',{
          friendname:3},{
          headers:{
              Authorization:`${token}`
@@ -139,12 +139,12 @@
     })
  
     test('post Messages', async()=>{
-     let res = await axios.post(`http://192.168.0.110:4000/api/login`, {
+     let res = await axios.post(`http://192.168.0.110:3000/api/login`, {
          "username": 'user1',
          "password": 'password1'
      })
      let token=res.data.token
-     let PostMessage = await axios.post(`http://192.168.0.110:4000/api/messages/${1}`,{
+     let PostMessage = await axios.post(`http://192.168.0.110:3000/api/messages/${1}`,{
          message:"hello"},{
          headers:{
              Authorization:`${token}`
@@ -154,7 +154,7 @@
     })
     test('post Messages with no token', async()=>{
      let token=""
-     let PostMessage = await axios.post(`http://192.168.0.110:4000/api/messages/${1}`,{
+     let PostMessage = await axios.post(`http://192.168.0.110:3000/api/messages/${1}`,{
          message:"hello"},{
          headers:{
              Authorization:`${token}`
@@ -165,12 +165,12 @@
         })
     })
     test('get Messages', async()=>{
-     let res = await axios.post(`http://192.168.0.110:4000/api/login`, {
+     let res = await axios.post(`http://192.168.0.110:3000/api/login`, {
          "username": 'user1',
          "password": 'password1'
      })
      let token=res.data.token
-     let GetMessage = await axios.get(`http://192.168.0.110:4000/api/messages/${1}`,{
+     let GetMessage = await axios.get(`http://192.168.0.110:3000/api/messages/${1}`,{
      
          headers:{
              Authorization:`${token}`
@@ -180,7 +180,7 @@
     })
     test('get Messages with no token', async()=>{
      let token=""
-     let GetMessage = await axios.get(`http://192.168.0.110:4000/api/messages/${1}`,{
+     let GetMessage = await axios.get(`http://192.168.0.110:3000/api/messages/${1}`,{
         
          headers:{
              Authorization:`${token}`
