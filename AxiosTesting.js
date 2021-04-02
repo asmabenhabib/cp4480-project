@@ -1,32 +1,32 @@
 const axios = require('axios');
 async function MessagesFunction(){
    
-       let login= await axios.post('http://192.168.0.110:3000/api/login', {
+       let login= await axios.post('http://192.168.100.5:3000/api/login', {
              username: 'admin',
              password: 'passwordadmin'
          })
             let token=login.data
             let user= token.u
             console.log(token)
-      let Users = await axios.get('http://192.168.0.110:3000/api/users',{
+      let Users = await axios.get('http://192.168.100.5:3000/api/users',{
           headers:{
               Authorization:`${token.token}`
           }
       })
       
-      let Chats = await axios.get('http://192.168.0.110:3000/api/chats',{
+      let Chats = await axios.get('http://192.168.100.5:3000/api/chats',{
         headers:{
             Authorization:`${token.token}`
         }
     })
-    let PostChat = await axios.post('http://192.168.0.110:3000/api/chats',{
+    let PostChat = await axios.post('http://192.168.100.5:3000/api/chats',{
         friendname:3},{
         headers:{
             Authorization:`${token.token}`
         }
     })
     if(user=='admin'){
-        let AdminChats=await axios.get('http://192.168.0.110:3000/api/admin/chats',{
+        let AdminChats=await axios.get('http://192.168.100.5:3000/api/admin/chats',{
             headers:{
                 Authorization:`${token.token}`
             }
@@ -34,14 +34,14 @@ async function MessagesFunction(){
         console.log(AdminChats.data)
 
     }
-    let postmessages= await axios.post(`http://192.168.0.110:3000/api/messages/${1}`,{
+    let postmessages= await axios.post(`http://192.168.100.5:3000/api/messages/${1}`,{
        message:"hello"},
        { headers:{
             Authorization:`${token.token}`
         }
     })
     console.log(postmessages.data)
-    let messages= await axios.get(`http://192.168.0.110:3000/api/messages/${1}`,{
+    let messages= await axios.get(`http://192.168.100.5:3000/api/messages/${1}`,{
         headers:{
             Authorization:`${token.token}`
         }
