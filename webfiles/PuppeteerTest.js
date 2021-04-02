@@ -1,9 +1,8 @@
-
 const puppeteer = require("puppeteer")
 async function testlogin(user, pass) {
     const browser = await puppeteer.launch({headless: false})
     const page = await browser.newPage()
-    await page.goto("http://127.0.0.1:4000")
+    await page.goto("http://192.168.0.110:3000")
     await page.focus('#username')
     await page.keyboard.type(user)
     await page.focus('#password')
@@ -17,7 +16,7 @@ async function testlogin(user, pass) {
 }
 
 async function testChat(result, page) {
-    if(result=='http://127.0.0.1:4000/admin.html') {
+    if(result=='http://192.168.0.110:3000/admin.html') {
         await page.goto(result, {
     
             waitUntil: ['networkidle2', 'load']
@@ -50,7 +49,7 @@ async function testChat(result, page) {
         
     } 
 
-    if(result=='http://127.0.0.1:4000/mainpage.html') {
+    if(result=='http://192.168.0.110:3000/mainpage.html') {
         await page.goto(result, {
     
             waitUntil: ['networkidle2', 'load']
