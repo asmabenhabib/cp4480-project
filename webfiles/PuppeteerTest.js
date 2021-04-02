@@ -1,11 +1,11 @@
 const puppeteer = require("puppeteer")
 async function testlogin(user, pass) {
     const browser = await puppeteer.launch({
-   headless: true,
-   args: ['--no-sandbox']
-})
+        headless: true,
+        args: ['--no-sandbox']
+     })
     const page = await browser.newPage()
-    await page.goto("http://192.168.0.110:8000")
+    await page.goto("http://192.168.100.5:8000")
     await page.focus('#username')
     await page.keyboard.type(user)
     await page.focus('#password')
@@ -19,7 +19,7 @@ async function testlogin(user, pass) {
 }
 
 async function testChat(result, page) {
-    if(result=='http://192.168.0.110:8000/admin.html') {
+    if(result=='http://192.168.100.5:8000/admin.html') {
         await page.goto(result, {
     
             waitUntil: ['networkidle2', 'load']
@@ -52,7 +52,7 @@ async function testChat(result, page) {
         
     } 
 
-    if(result=='http://192.168.0.110:8000/mainpage.html') {
+    if(result=='http://192.168.100.5:8000/mainpage.html') {
         await page.goto(result, {
     
             waitUntil: ['networkidle2', 'load']
