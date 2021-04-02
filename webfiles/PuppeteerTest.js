@@ -1,6 +1,9 @@
 const puppeteer = require("puppeteer")
 async function testlogin(user, pass) {
-    const browser = await puppeteer.launch({headless: true})
+    const browser = await puppeteer.launch({
+   headless: true,
+   args: ['--no-sandbox']
+})
     const page = await browser.newPage()
     await page.goto("http://192.168.0.110:8000")
     await page.focus('#username')
