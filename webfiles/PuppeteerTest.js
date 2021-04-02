@@ -77,7 +77,7 @@ async function testChat(result, page) {
 
         let logout= await page.$('#logout-button')
         await logout.click()
-        
+        process.exit(22)
     } 
 }
 
