@@ -2,7 +2,7 @@ var script = document.createElement('script');
 script.src = 'https://code.jquery.com/jquery-3.5.1.min.js';
 script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
-le username
+let username
 function loadFriends(){    
     let authToken = sessionStorage.getItem('authorization')
     document.getElementById('topmenu').getElementsByTagName('span')[0].style.background = `url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/top-menu.png") ${-3}px ${-118}px no-repeat`
