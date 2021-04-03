@@ -39,7 +39,7 @@ async function testChat(result, page) {
         await page.waitForSelector('#currenMessage')
         await page.focus('#currenMessage')
         await page.keyboard.type('helloWorld:)')
-        let sendnewMessage = await page.$('#sendMessage')
+        let sendnewMessage = await page.$('#sendMessag')
         await sendnewMessage.click()
         let AdminChat= await page.$('#chats1')
         await AdminChat.click()

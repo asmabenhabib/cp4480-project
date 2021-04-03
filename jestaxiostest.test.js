@@ -7,7 +7,7 @@
  test('succcess login', async()=>{
   let res = await axios.post(`http://192.168.100.5:3000/api/login`, {
          "username": 'admin',
-         "password": 'passwordadmin2'
+         "password": 'passwordadmin'
      })
          expect(res.status).toBe(200)
  })
